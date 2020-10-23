@@ -26,7 +26,7 @@ limitations under the License.
       </b-tag>
     </template>
     <template slot="end">
-      <b-navbar-item v-show="newButtonVisible" href="#" @click="$emit('reset-wheel')">
+      <!-- <b-navbar-item v-show="newButtonVisible" href="#" @click="$emit('reset-wheel')">
         <i class="fas fa-file fa-fw"></i>&nbsp;{{ $t('toolbar.New') }}
       </b-navbar-item>
       <b-navbar-item v-show="openButtonVisible" href="#" @click="$emit('open-open-dialog')">
@@ -34,10 +34,13 @@ limitations under the License.
       </b-navbar-item>
       <b-navbar-item v-show="saveButtonVisible" href="#" @click="$emit('open-save-dialog')">
         <i class="fa fa-save fa-fw"></i>&nbsp;{{ $t('common.Save') }}
+      </b-navbar-item> -->
+      <b-navbar-item v-show="resetButtonVisible" href="#" @click="$emit('open-reset-dialog')">
+        <i class="fa fa-redo-alt fa-fw"></i>&nbsp;{{ $t('toolbar.Reset') }}
       </b-navbar-item>
-      <b-navbar-item v-show="shareButtonVisible" href="#" @click="$emit('open-share-dialog')">
+      <!-- <b-navbar-item v-show="shareButtonVisible" href="#" @click="$emit('open-share-dialog')">
         <i class="fa fa-share-alt fa-fw"></i>&nbsp;{{ $t('toolbar.Share') }}
-      </b-navbar-item>
+      </b-navbar-item> -->
       <b-navbar-item v-show="optionsButtonVisible" href="#" @click="$emit('open-options-dialog')">
         <i class="fa fa-cog fa-fw"></i>&nbsp;{{ $t('common.Options') }}
       </b-navbar-item>
@@ -47,7 +50,7 @@ limitations under the License.
       <b-navbar-item v-show="exitFullscreenButtonVisible" href="#" @click="$store.commit('exitFullScreen')">
         <i class="fa fa-compress fa-fw"></i>&nbsp;{{ $t('toolbar.Exit fullscreen') }}
       </b-navbar-item>
-      <b-navbar-item v-show="unlinkSheetButtonVisible" href="#" @click="$store.commit('unlinkSheet')">
+      <!-- <b-navbar-item v-show="unlinkSheetButtonVisible" href="#" @click="$store.commit('unlinkSheet')">
         <i class="fa fa-unlink fa-fw"></i>&nbsp;{{ $t('toolbar.Unlink Google Spreadsheet') }}
       </b-navbar-item>
       <b-navbar-dropdown v-if="$mq=='mobile'" :label="$t('toolbar.Language')">
@@ -65,11 +68,11 @@ limitations under the License.
             {{ locale.humanName }}
           </option>
         </b-select>
-      </b-navbar-item>
+      </b-navbar-item> -->
       <template v-if="browserIsIEOrOldEdge">
       </template>
       <template v-else>
-        <b-navbar-dropdown v-show="moreVisible" :label="$t('toolbar.More')" :right="true">
+        <!-- <b-navbar-dropdown v-show="moreVisible" :label="$t('toolbar.More')" :right="true">
           <b-navbar-item v-show="faqbuttonVisible" href="/faq.html">
             <i class="fa fa-question-circle fa-fw"></i>&nbsp;{{ $t('toolbar.Licenses') }}
           </b-navbar-item>
@@ -79,7 +82,7 @@ limitations under the License.
           <b-navbar-item href="#" v-show="importVisible" @click="$emit('open-sheet-dialog')">
             <i class="fa fa-link fa-fw"></i>&nbsp;{{ $t('common.Link Google Spreadsheet') }}
           </b-navbar-item>
-        </b-navbar-dropdown>
+        </b-navbar-dropdown> -->
       </template>
     </template>
   </b-navbar>
@@ -92,7 +95,7 @@ limitations under the License.
   export default {
     data() {
       return {
-        toolbarBrand: window.location.host,
+        toolbarBrand: "FFN Roulette",
         browserIsIEOrOldEdge: Util.browserIsIEOrOldEdge(navigator.userAgent),
         locale: this.$i18n.locale, locales: Locales.getNamesForAll()
       };
@@ -111,6 +114,10 @@ limitations under the License.
         return appStatus.online && !appStatus.fullScreen && !appStatus.wheelSpinning;
       },
       shareButtonVisible: function() {
+        const appStatus = this.$store.state.appStatus;
+        return appStatus.online && !appStatus.fullScreen && !appStatus.wheelSpinning;
+      },
+      resetButtonVisible: function() {
         const appStatus = this.$store.state.appStatus;
         return appStatus.online && !appStatus.fullScreen && !appStatus.wheelSpinning;
       },

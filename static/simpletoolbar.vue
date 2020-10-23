@@ -26,7 +26,7 @@ limitations under the License.
 <script>
   export default {
     data() {
-      return {toolbarBrand: window.location.host};
+      return {toolbarBrand: "FFN Roulette"};
     }
   }
 </script>

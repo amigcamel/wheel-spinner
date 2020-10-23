@@ -139,7 +139,8 @@
     "New": "New",
     "Offline mode": "Offline mode",
     "Share": "Share",
-    "Unlink Google Spreadsheet": "Unlink Google Spreadsheet"
+    "Unlink Google Spreadsheet": "Unlink Google Spreadsheet",
+    "Reset": "Reset"
   },
   "twitterdialog": {
     "Found Twitter users": "Found {userCount} Twitter users who have tweeted about \"{term}\" recently",

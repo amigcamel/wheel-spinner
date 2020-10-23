@@ -14,14 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import * as Util from './Util.js';
+import Names from './imgs.json';
 
 export default function WheelConfig(winnerMessage) {
   this.title = '';
-  this.names = [
-    'Hamburger', 'Lasagna', 'Fish and chips', 'فلافل - Falafel',
-    '炒麵 - Chow mein', 'Tortilla española', 'Crêpes', 'Pierogi', 'Feijoada',
-    'ผัดไทย - Pad thai', 'Döner kebab', 'Phở'
-  ];
+  this.names = Names;
   this.colorSettings = [
     {color: '#3369E8', enabled: true},
     {color: '#D50F25', enabled: true},
