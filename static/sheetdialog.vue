@@ -170,18 +170,15 @@ limitations under the License.
       async enter_userIsLoggingIn() {
         this.setState('userIsLoggingIn');
         try {
-          ga('send', 'event', 'Wheel', 'LoginForSheetAttempt', '');
           const accessToken = await Firebase.logInToSheets(this.$i18n.locale);
           await SheetPicker.load(accessToken);
           const user = await Firebase.getLoggedInUser();
           this.$store.commit('logInUser', {
             photoUrl: user.photoURL, displayName: user.displayName, uid: user.uid
           });
-          ga('send', 'event', 'Wheel', 'LoginForSheetSuccess', '');
           this.enter_userIsPickingSheet();
         }
         catch (ex) {
-          ga('send', 'event', 'Wheel', 'LoginForSheetFailure', ex);
           this.enter_authError(ex);
         }
       },
@@ -204,7 +201,6 @@ limitations under the License.
       },
       enter_linkingSheet() {
         this.setState('linkingSheet');
-        ga('send', 'event', 'Wheel', 'LinkSpreadsheet', '');
         this.$store.commit('linkSheet');
         this.sheetLinkedAtMs = new Date().getTime();
         this.enter_readingSheet();
@@ -222,7 +218,6 @@ limitations under the License.
           this.enter_waitingToReadSheet();
         }
         catch (ex) {
-          ga('send', 'event', ex, 'enter_readingSheet()', navigator.userAgent);
           this.enter_authError(ex);
         }
       },

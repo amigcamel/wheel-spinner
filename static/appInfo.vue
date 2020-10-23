@@ -44,7 +44,6 @@ limitations under the License.
     },
     methods: {
       toggleVisibility() {
-        ga('send', 'event', 'Wheel', 'ToggleAppInfoVisibility', '');
         this.$store.commit('toggleAppInfoVisibility');
       }
     }

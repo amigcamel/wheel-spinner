@@ -154,7 +154,6 @@ limitations under the License.
       async enter_userIsLoggingIn(providerName) {
         this.fsm = 'userIsLoggingIn';
         try {
-          ga('send', 'event', 'Wheel', `LoginForSaveAttempt-${providerName}`, '');
           this.$emit('start-wait-animation');
           const user = await Firebase.logIn(providerName, this.$i18n.locale);
           this.$store.commit('logInUser', {
@@ -162,12 +161,10 @@ limitations under the License.
           });
           this.userEmail = user.email;
           this.$emit('stop-wait-animation');
-          ga('send', 'event', 'Wheel', `LoginForSaveSuccess-${providerName}`, '');
           this.enter_loadingWheels();
         }
         catch (ex) {
           this.$emit('stop-wait-animation');
-          ga('send', 'event', 'Wheel', `LoginForSaveFailure-${providerName}`, ex);
           this.enter_authError(ex);
         }
       },

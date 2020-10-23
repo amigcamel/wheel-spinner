@@ -122,10 +122,8 @@ limitations under the License.
         const defaultNames = this.wheelConfig.getDefaultNames();
         if (!Util.arraysEqual(this.names, defaultNames)) {
           const label = this.$store.state.version;
-          ga('send', 'event', 'Wheel', 'SpinWithCustomNames', label);
         }
         else {
-          ga('send', 'event', 'Wheel', 'SpinWithDefaultNames', '');
         }
       },
       tick(ms) {

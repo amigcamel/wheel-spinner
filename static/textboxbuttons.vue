@@ -40,7 +40,6 @@ limitations under the License.
     watch: {
       uploadedImage: function(files) {
         if (files.length == 0) return;
-        ga('send', 'event', 'Wheel', 'UploadPieSliceImage', files.length);
         for (const file of files) {
           const reader = new FileReader();
           const self = this;
@@ -62,11 +61,9 @@ limitations under the License.
     },
     methods: {
       shuffle() {
-        ga('send', 'event', 'Wheel', 'ShuffleNames', '');
         this.$store.commit('shuffleNames');
       },
       sort() {
-        ga('send', 'event', 'Wheel', 'SortNames', '');
         this.$store.commit('sortNames');
       },
     }

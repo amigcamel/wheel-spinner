@@ -186,11 +186,9 @@ limitations under the License.
       },
       fullScreen(newValue, oldValue) {
         if (newValue) {
-          ga('send', 'event', 'Wheel', 'EnterFullscreen', '');
           FullScreen.turnOnFullscreen();
         }
         if (!newValue) {
-          ga('send', 'event', 'Wheel', 'ExitFullscreen', '');
           FullScreen.turnOffFullscreen();
         }
       },
@@ -262,27 +260,21 @@ limitations under the License.
         this.showSnackbarMessage(this.$t('app.Loaded default entries and options'));
       },
       openOpenDialog() {
-        ga('send', 'event', 'Wheel', 'ShowOpenDialog', '');
         this.$refs.opendialog.show();
       },
       openSaveDialog() {
-        ga('send', 'event', 'Wheel', 'ShowSaveDialog', '');
         this.$refs.savedialog.show();
       },
       openShareDialog() {
-        ga('send', 'event', 'Wheel', 'GetSharableLink', '');
         this.$refs.sharedialog.show();
       },
       openOptionsDialog() {
-        ga('send', 'event', 'Wheel', 'ShowCustomizeDialog', '');
         this.$refs.optionsdialog.show();
       },
       openTwitterDialog() {
-        ga('send', 'event', 'Wheel', 'ShowSocialMediaDialog', '');
         this.$refs.twitterdialog.show();
       },
       openSheetDialog() {
-        ga('send', 'event', 'Wheel', 'ShowSpreadsheetDialog', '');
         this.$refs.sheetdialog.show();
       },
       setLocale(locale) {
@@ -340,7 +332,6 @@ limitations under the License.
       },
       authError(ex) {
         const msg = this.$t('app.authError', {error: ex});
-        ga('send', 'event', 'AuthError', ex, navigator.userAgent);
         this.$buefy.dialog.alert({
           title: this.$t('app.Error'),
           message: msg,

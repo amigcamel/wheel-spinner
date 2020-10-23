@@ -169,7 +169,6 @@ limitations under the License.
         this.setState('Inactive');
       },
       copyLink() {
-        ga('send', 'event', 'Wheel', 'CopySharableLink', '');
         const textBox = document.querySelector('#sharableLinkText');
         textBox.select();
         document.execCommand("copy");

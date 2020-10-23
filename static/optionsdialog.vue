@@ -225,7 +225,6 @@ limitations under the License.
         var reader = new FileReader();
         const self = this;
         reader.onload = async function(e) {
-          ga('send', 'event', 'Wheel', 'UploadedCustomImage', '');
           const dataUri = await ImageUtil.optimizeCenterImage(e.target.result);
           self.wheelConfig.setCustomPicture(newValue.name, dataUri);
           self.$buefy.dialog.confirm({
@@ -248,7 +247,6 @@ limitations under the License.
       },
       colorTheme: function(newValue) {
         if (newValue) {
-          ga('send', 'event', 'Wheel', 'SetColorTheme', newValue);
           for (let i=0; i<this.wheelConfig.colorSettings.length; i++) {
             this.wheelConfig.colorSettings[i] = {color: '#000000', enabled: false};
           }
@@ -267,7 +265,6 @@ limitations under the License.
         this.optionsDialogVisible = true;
       },
       async setColorsFromCustomPicture() {
-        ga('send', 'event', 'Wheel', 'SetColorsFromCustomPicture', '');
         const colors = await ImageUtil.extractColors(this.wheelConfig.customPictureDataUri);
         for (let i=0; i<colors.length; i++) {
           this.wheelConfig.colorSettings[i] = {color: colors[i], enabled: true};

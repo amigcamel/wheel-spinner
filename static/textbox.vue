@@ -107,7 +107,6 @@ limitations under the License.
         // Intercept paste into the text-box. Transform rich text into plain text,
         // unless a data image is being pasted.
         e.preventDefault();
-        ga('send', 'event', 'Wheel', 'PasteIntoTextbox', '');
         if (e.clipboardData) {
           let html = (e.originalEvent || e).clipboardData.getData('text/html');
           let match = html.match(/(<.*?src="data:image.*?>)/);

@@ -37,9 +37,6 @@ import './images/link.png';
 //
 window.onerror = function(message, source, lineno, colno, error) {
   if (error) message = error.stack;
-  if (!location.host.startsWith('localhost')) {
-    ga('send', 'event', 'window.onerror', message, navigator.userAgent);
-  }
 }
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
