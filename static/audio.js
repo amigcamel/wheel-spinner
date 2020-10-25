@@ -30,17 +30,17 @@ let musicPlayingNow;
 const duringSpinSounds = [
   {name: 'sounds.No sound', value: 'no-sound'},
   {name: 'sounds.Ticking sound', value: 'ticking-sound'},
-  {name: 'sounds.Dramatic music', value: 'dramatic-music', musicFile: '/strength-of-the-titans-by-kevin-macleod-from-filmmusic-io.mp3'},
-  {name: 'sounds.Piano music', value: 'piano-music', musicFile: '/amazing-plan-by-kevin-macleod-from-filmmusic-io.mp3'},
-  {name: 'sounds.Cheerful music', value: 'cheerful-music', musicFile: '/life-of-riley-by-kevin-macleod-from-filmmusic-io.mp3'},
+  {name: 'sounds.Dramatic music', value: 'dramatic-music', musicFile: 'strength-of-the-titans-by-kevin-macleod-from-filmmusic-io.mp3'},
+  {name: 'sounds.Piano music', value: 'piano-music', musicFile: 'amazing-plan-by-kevin-macleod-from-filmmusic-io.mp3'},
+  {name: 'sounds.Cheerful music', value: 'cheerful-music', musicFile: 'life-of-riley-by-kevin-macleod-from-filmmusic-io.mp3'},
 ]
 
 const afterSpinSounds = [
   {name: 'sounds.No sound', value: 'no-sound'},
-  {name: 'sounds.Applause', value: 'applause-sound', file: '/SMALL_CROWD_APPLAUSE-Yannick_Lemieux-1268806408.mp3'},
-  {name: 'sounds.Fanfare', value: 'fanfare-sound', file: '/350428__benjaminharveydesign__trumpet-fanfare.mp3'},
-  {name: 'sounds.Bell ringing', value: 'bell-sound', file: '/370743__podsburgh__winner-metal-bell-ringing-remix.mp3'},
-  {name: 'sounds.Cymbals', value: 'cymbal-sound', file: '/425432__trivialaccapella__18-crash-hit-soft.mp3'},
+  {name: 'sounds.Applause', value: 'applause-sound', file: 'SMALL_CROWD_APPLAUSE-Yannick_Lemieux-1268806408.mp3'},
+  {name: 'sounds.Fanfare', value: 'fanfare-sound', file: '350428__benjaminharveydesign__trumpet-fanfare.mp3'},
+  {name: 'sounds.Bell ringing', value: 'bell-sound', file: '370743__podsburgh__winner-metal-bell-ringing-remix.mp3'},
+  {name: 'sounds.Cymbals', value: 'cymbal-sound', file: '425432__trivialaccapella__18-crash-hit-soft.mp3'},
   {name: 'sounds.Read out the winning name', value: 'read-winner-sound'},
 ]
 
@@ -53,7 +53,7 @@ export function getAfterSpinSounds() {
 }
 
 export function playTick() {
-  playSound('/ding.mp3');
+  playSound('ding.mp3');
 }
 
 export function playClick() {

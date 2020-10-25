@@ -20,6 +20,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {GenerateSW} = require('workbox-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const publicPath = '/dist/'
 
 module.exports = {
   entry: {
@@ -32,7 +33,7 @@ module.exports = {
   output: {
     filename: '[name]-[contenthash].js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: '/'
+    publicPath: publicPath
   },
   optimization: {
     splitChunks: {
@@ -91,7 +92,8 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: '/images/'
+              outputPath: '/images/',
+              publicPath: publicPath
             }
           }
         ]
@@ -103,7 +105,8 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: '/'
+              outputPath: '/',
+              publicPath: publicPath
           }
         }
         ]
