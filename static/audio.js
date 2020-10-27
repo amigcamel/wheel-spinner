@@ -33,6 +33,7 @@ const duringSpinSounds = [
   {name: 'sounds.Dramatic music', value: 'dramatic-music', musicFile: 'strength-of-the-titans-by-kevin-macleod-from-filmmusic-io.mp3'},
   {name: 'sounds.Piano music', value: 'piano-music', musicFile: 'amazing-plan-by-kevin-macleod-from-filmmusic-io.mp3'},
   {name: 'sounds.Cheerful music', value: 'cheerful-music', musicFile: 'life-of-riley-by-kevin-macleod-from-filmmusic-io.mp3'},
+  {name: 'Xmas', value: 'xmas'},
 ]
 
 const afterSpinSounds = [
@@ -74,7 +75,15 @@ export function playAfterSpin(trackName, winningEntry) {
 }
 
 export function startMusic(trackName) {
-  const file = duringSpinSounds.find(sound => sound.value==trackName).musicFile;
+  let file;
+  if (trackName == 'xmas') {
+    const maximum = 15;
+    const minimum = 1;
+    const randint = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+    file = `sounds/xmas/christmas_${randint}.mp3`;
+  } else {
+    file = duringSpinSounds.find(sound => sound.value==trackName).musicFile;
+  }
   if (file) musicPlayingNow = new Howl({ src: [file], autoplay: true });
 }
 
