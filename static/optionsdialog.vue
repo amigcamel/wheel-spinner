@@ -166,6 +166,23 @@ limitations under the License.
               </b-select>
             </b-field>
           </b-tab-item>
+          <b-tab-item label="Miscellaneous">
+            <br/>
+            <b-field label="Spin trigger key">
+              <b-select v-model="wheelConfig.spinTriggerKey">
+                <option
+                  v-for="val in ['enter', 'ctrl+enter']"
+                  :value="val"
+                  :key="val">
+                  {{ val }}
+                </option>
+              </b-select>
+            </b-field>
+            <br/>
+            <b-checkbox v-model="wheelConfig.doNotChangeBackgroundColor">
+              Do not chagne background color after uploading image
+            </b-checkbox>
+          </b-tab-item>
         </b-tabs>
       </section>
       <footer class="modal-card-foot" style="justify-content:flex-end">

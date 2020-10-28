@@ -22,7 +22,7 @@ limitations under the License.
         {{ $t('spinningwheel.Click to spin') }}
       </div>
       <div class="instructionsText" id="bottomInstruction" style="padding-top: 60%">
-        {{ $t('spinningwheel.or press ctrl+enter') }}
+        or press {{ wheelConfig.spinTriggerKey }}
       </div>
     </div>
     <div v-if="isTouchScreen" id="instructionsLayer" ref="instructionsLayer" @click="spin()">
@@ -69,7 +69,9 @@ limitations under the License.
           newValue.getCoalescedColors(),
           newValue.getWheelImage(),
           newValue.spinTime,
-          newValue.hubSize
+          newValue.hubSize,
+          newValue.doNotChangeBackgroundColor,
+          newValue.spinTriggerKey,
         );
       },
       names(newValue, oldValue) {
@@ -96,7 +98,13 @@ limitations under the License.
         if (!Util.isTouchScreen()) {
           const self = this;
           document.addEventListener('keyup', event => {
-            if (event.key == 'Enter' && event.ctrlKey) {
+            let triggered;
+            if (this.wheelConfig.spinTriggerKey == 'enter') {
+              triggered = (event.key == 'Enter' && (event.target.id != 'names'));
+            } else if (this.wheelConfig.spinTriggerKey == 'ctrl+enter') {
+              triggered = (event.key == 'Enter' && event.ctrlKey);
+            }
+            if (triggered) {
               self.spin();
             }
           });

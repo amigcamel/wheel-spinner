@@ -40,12 +40,13 @@ export default function Wheel() {
     this.wheelPainter.refresh();
   }
 
-  this.configure = function(colors, centerImage, spinTime, hubSize) {
+  this.configure = function(colors, centerImage, spinTime, hubSize, doNotChangeBackgroundColor) {
     if (this.state.editAllowed()) {
       this.colors = colors;
       this.centerImage = centerImage;
       this.spinTime = spinTime;
       this.hubSize = hubSize;
+      this.doNotChangeBackgroundColor = doNotChangeBackgroundColor;
       this.wheelPainter.refresh();
     }
   }
@@ -121,7 +122,7 @@ export default function Wheel() {
 
   this.draw = function(context) {
     this.wheelPainter.draw(context, this.angle, this.namePicker.getDisplayNames(),
-                          this.colors, this.centerImage, this.hubSize);
+                          this.colors, this.centerImage, this.hubSize, this.doNotChangeBackgroundColor);
   }
 
 }

@@ -15,6 +15,8 @@ limitations under the License.
 */
 import * as Util from './Util.js';
 import Names from './imgs.json';
+import * as Demo from './giftbox';
+
 
 export default function WheelConfig(winnerMessage) {
   this.title = '';
@@ -27,23 +29,25 @@ export default function WheelConfig(winnerMessage) {
     {color: '#000000', enabled: false},
     {color: '#000000', enabled: false},
   ];
-  this.pictureType = 'none';
+  this.pictureType = 'uploaded';
   this.galleryPicture = 'images/none.png';
-  this.customPictureName = '';
-  this.customPictureDataUri = '';
-  this.allowDuplicates = true;
-  this.duringSpinSound = 'ticking-sound';
+  this.customPictureName = 'giftbox';
+  this.customPictureDataUri = Demo.getDemoImg();
+  this.allowDuplicates = false;
+  this.duringSpinSound = 'xmas';
   this.afterSpinSound = 'applause-sound';
   this.maxNames = 200;
-  this.spinTime = 10;
+  this.spinTime = 3;
   this.playCheers = true;
-  this.launchConfetti = true;
+  this.launchConfetti = false;
   this.animateWinner = false;
   this.autoRemoveWinner = false;
   this.displayWinnerDialog = true;
-  this.winnerMessage = winnerMessage || 'We have a winner!';
+  this.winnerMessage = winnerMessage || 'Thanks, Genie!';
   this.playClickWhenWinnerRemoved = false;
   this.hubSize = 'S';
+  this.doNotChangeBackgroundColor = true;
+  this.spinTriggerKey = 'enter';  // 'enter' or 'ctrl+enter'
 
   this.loadJson = function(jsonString) {
     let obj = JSON.parse(jsonString);
