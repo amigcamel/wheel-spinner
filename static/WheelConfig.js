@@ -15,6 +15,8 @@ limitations under the License.
 */
 import * as Util from './Util.js';
 import Names from './imgs.json';
+import * as Demo from './giftbox';
+
 
 export default function WheelConfig(winnerMessage) {
   this.title = '';
@@ -27,12 +29,12 @@ export default function WheelConfig(winnerMessage) {
     {color: '#000000', enabled: false},
     {color: '#000000', enabled: false},
   ];
-  this.pictureType = 'none';
+  this.pictureType = 'uploaded';
   this.galleryPicture = 'images/none.png';
-  this.customPictureName = '';
-  this.customPictureDataUri = '';
   this.allowDuplicates = true;
   this.duringSpinSound = 'ticking-sound';
+  this.customPictureName = 'giftbox';
+  this.customPictureDataUri = Demo.getDemoImg();
   this.afterSpinSound = 'applause-sound';
   this.maxNames = 200;
   this.spinTime = 10;
