@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-<template>
+<!-- <template>
   <div class="card" style="margin-top:10px">
     <div class="card-content" style="padding:10px">
       <div class="content" style="font-size:0.8em">
@@ -30,7 +30,7 @@ limitations under the License.
       </div>
     </div>
   </div>
-</template>
+</template> -->
 
 <script>
   export default {
