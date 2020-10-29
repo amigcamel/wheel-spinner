@@ -22,7 +22,6 @@ limitations under the License.
       v-on:open-open-dialog="openOpenDialog()"
       v-on:open-save-dialog="openSaveDialog()"
       v-on:open-share-dialog="openShareDialog()"
-      v-on:open-reset-dialog="openResetDialog()"
       v-on:open-options-dialog="openOptionsDialog()"
       v-on:open-twitter-dialog="openTwitterDialog()"
       v-on:open-sheet-dialog="openSheetDialog()"
@@ -75,12 +74,6 @@ limitations under the License.
       v-on:start-wait-animation="startWaitAnimation"
       v-on:stop-wait-animation="stopWaitAnimation"
     ></sharedialog>
-    <resetdialog
-      ref="resetdialog"
-      v-on:show-snackbar-message="showSnackbarMessage"
-      v-on:start-wait-animation="startWaitAnimation"
-      v-on:stop-wait-animation="stopWaitAnimation"
-    ></resetdialog>
     <twitterdialog
       ref="twitterdialog"
       v-on:show-snackbar-message="showSnackbarMessage"
@@ -114,7 +107,6 @@ limitations under the License.
   import savedialog from './savedialog.vue';
   import optionsdialog from './optionsdialog.vue';
   import sharedialog from './sharedialog.vue';
-  import resetdialog from './resetdialog.vue';
   import twitterdialog from './twitterdialog.vue';
   import sheetdialog from './sheetdialog.vue';
   import winnerdialog from './winnerdialog.vue';
@@ -133,7 +125,7 @@ limitations under the License.
   export default {
     components: {
       loadingScreen, toolbar, textboxbuttons, textbox, spinningwheel, appInfo,
-      opendialog, winnerdialog, savedialog, optionsdialog, sharedialog, resetdialog,
+      opendialog, winnerdialog, savedialog, optionsdialog, sharedialog,
       twitterdialog, sheetdialog, winneranimation
     },
     async mounted() {
@@ -275,9 +267,6 @@ limitations under the License.
       },
       openShareDialog() {
         this.$refs.sharedialog.show();
-      },
-      openResetDialog() {
-        this.$refs.resetdialog.show();
       },
       openOptionsDialog() {
         this.$refs.optionsdialog.show();

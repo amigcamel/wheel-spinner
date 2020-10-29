@@ -35,8 +35,6 @@ limitations under the License.
       <b-navbar-item v-show="saveButtonVisible" href="#" @click="$emit('open-save-dialog')">
         <i class="fa fa-save fa-fw"></i>&nbsp;{{ $t('common.Save') }}
       </b-navbar-item> -->
-      <b-navbar-item v-show="resetButtonVisible" href="#" @click="$emit('open-reset-dialog')">
-        <i class="fa fa-redo-alt fa-fw"></i>&nbsp;{{ $t('toolbar.Reset') }}
       </b-navbar-item>
       <!-- <b-navbar-item v-show="shareButtonVisible" href="#" @click="$emit('open-share-dialog')">
         <i class="fa fa-share-alt fa-fw"></i>&nbsp;{{ $t('toolbar.Share') }}
