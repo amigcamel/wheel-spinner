@@ -47,6 +47,7 @@ export default function WheelConfig(winnerMessage) {
   this.playClickWhenWinnerRemoved = false;
   this.hubSize = 'S';
   this.doNotChangeBackgroundColor = true;
+  this.spinTriggerKey = 'enter';  // 'enter' or 'ctrl+enter'
 
   this.loadJson = function(jsonString) {
     let obj = JSON.parse(jsonString);

@@ -19,10 +19,8 @@ limitations under the License.
     </canvas>
     <div v-if="!isTouchScreen" id="instructionsLayer" ref="instructionsLayer" @click="spin()">
       <div class="instructionsText" id="topInstruction" style="padding-top: 20%">
-        {{ $t('spinningwheel.Click to spin') }}
       </div>
       <div class="instructionsText" id="bottomInstruction" style="padding-top: 60%">
-        {{ $t('spinningwheel.or press ctrl+enter') }}
       </div>
     </div>
     <div v-if="isTouchScreen" id="instructionsLayer" ref="instructionsLayer" @click="spin()">
@@ -49,7 +47,7 @@ limitations under the License.
     mounted() {
       this.myWheel = new Wheel();
       this.tick(0);
-      this.setupOverlay();
+      // this.setupOverlay();
       this.startKeyListener();
     },
     computed: {
@@ -71,7 +69,11 @@ limitations under the License.
           newValue.spinTime,
           newValue.hubSize,
           newValue.doNotChangeBackgroundColor,
+          newValue.spinTriggerKey,
         );
+        document.getElementById('topInstruction').innerHTML = 'Click to spin';
+        document.getElementById('bottomInstruction').innerHTML = `or press ${newValue.spinTriggerKey}`;
+        this.setupOverlay();
       },
       names(newValue, oldValue) {
         this.myWheel.setNames(newValue, this.wheelConfig.maxNames,
@@ -97,7 +99,13 @@ limitations under the License.
         if (!Util.isTouchScreen()) {
           const self = this;
           document.addEventListener('keyup', event => {
-            if (event.key == 'Enter' && event.ctrlKey) {
+            let triggered;
+            if (this.wheelConfig.spinTriggerKey == 'enter') {
+              triggered = (event.key == 'Enter' && (event.target.id != 'names'));
+            } else if (this.wheelConfig.spinTriggerKey == 'ctrl+enter') {
+              triggered = (event.key == 'Enter' && event.ctrlKey);
+            }
+            if (triggered) {
               self.spin();
             }
           });
