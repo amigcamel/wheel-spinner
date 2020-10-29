@@ -255,9 +255,19 @@ limitations under the License.
         }
       },
       resetWheel() {
-        const wheelConfig = new WheelConfig(this.$t('common.We have a winner!'));
-        this.$store.commit('setWheelConfig', wheelConfig);
-        this.showSnackbarMessage(this.$t('app.Loaded default entries and options'));
+        this.$buefy.dialog.alert({
+          title: "Reset wheel",
+          message: "All your changes will be reset, are you sure?",
+          type: 'is-danger',
+          hasIcon: true,
+          ariaRole: 'alertdialog',
+          ariaModal: true,
+          onConfirm: () => {
+            const wheelConfig = new WheelConfig(this.$t('common.We have a winner!'));
+            this.$store.commit('setWheelConfig', wheelConfig);
+            this.showSnackbarMessage(this.$t('app.Loaded default entries and options'));
+          }
+        })
       },
       openOpenDialog() {
         this.$refs.opendialog.show();

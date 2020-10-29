@@ -26,17 +26,16 @@ limitations under the License.
       </b-tag>
     </template>
     <template slot="end">
-      <!-- <b-navbar-item v-show="newButtonVisible" href="#" @click="$emit('reset-wheel')">
-        <i class="fas fa-file fa-fw"></i>&nbsp;{{ $t('toolbar.New') }}
+      <b-navbar-item v-show="newButtonVisible" href="#" @click="$emit('reset-wheel')">
+        <i class="fas fa-redo fa-fw"></i>&nbsp;Reset
       </b-navbar-item>
-      <b-navbar-item v-show="openButtonVisible" href="#" @click="$emit('open-open-dialog')">
+      <!-- <b-navbar-item v-show="openButtonVisible" href="#" @click="$emit('open-open-dialog')">
         <i class="fa fa-folder-open fa-fw"></i>&nbsp;{{ $t('common.Open') }}
       </b-navbar-item>
       <b-navbar-item v-show="saveButtonVisible" href="#" @click="$emit('open-save-dialog')">
         <i class="fa fa-save fa-fw"></i>&nbsp;{{ $t('common.Save') }}
-      </b-navbar-item> -->
       </b-navbar-item>
-      <!-- <b-navbar-item v-show="shareButtonVisible" href="#" @click="$emit('open-share-dialog')">
+      <b-navbar-item v-show="shareButtonVisible" href="#" @click="$emit('open-share-dialog')">
         <i class="fa fa-share-alt fa-fw"></i>&nbsp;{{ $t('toolbar.Share') }}
       </b-navbar-item> -->
       <b-navbar-item v-show="optionsButtonVisible" href="#" @click="$emit('open-options-dialog')">
