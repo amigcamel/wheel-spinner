@@ -69,7 +69,8 @@ limitations under the License.
           newValue.getCoalescedColors(),
           newValue.getWheelImage(),
           newValue.spinTime,
-          newValue.hubSize
+          newValue.hubSize,
+          newValue.doNotChangeBackgroundColor,
         );
       },
       names(newValue, oldValue) {

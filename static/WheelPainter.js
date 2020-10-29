@@ -29,12 +29,12 @@ export default class WheelPainter {
     this.wheelImages = {};
   }
 
-  draw(context, angle, names, colors, centerImage, hubSize) {
+  draw(context, angle, names, colors, centerImage, hubSize, doNotChangeBackgroundColor) {
     const wheelRadius = context.canvas.width * .44;
     const hubRadius = this.getHubRadius(wheelRadius, hubSize);
     this.drawWheelShadow(context, wheelRadius);
     if (names.includes('')) this.drawHat(context, wheelRadius, hubRadius);
-    this.drawWheel(context, wheelRadius, angle, names, colors, hubRadius);
+    this.drawWheel(context, wheelRadius, angle, names, colors, hubRadius, doNotChangeBackgroundColor);
     this.drawPointer(context, wheelRadius);
     this.drawHub(context, angle, centerImage, hubRadius);
   }
@@ -56,10 +56,10 @@ export default class WheelPainter {
     context.drawImage(this.wheelShadowImage, 0, 0);
   }
 
-  drawWheel(context, wheelRadius, angle, names, colors, hubRadius) {
+  drawWheel(context, wheelRadius, angle, names, colors, hubRadius, doNotChangeBackgroundColor) {
     if (!this.wheelImage) {
       this.wheelImage = ImageUtil.createInMemoryImage(context.canvas.width, context.canvas.height);
-      this.drawWheelNoCache(this.wheelImage.getContext("2d"), wheelRadius, names, colors, hubRadius);
+      this.drawWheelNoCache(this.wheelImage.getContext("2d"), wheelRadius, names, colors, hubRadius, doNotChangeBackgroundColor);
       this.names = names.slice(0);
     }
     var width = context.canvas.width;
@@ -100,7 +100,7 @@ export default class WheelPainter {
     context.fillRect(0, 0, context.canvas.width, context.canvas.height);
   }
 
-  drawWheelNoCache(context, wheelRadius, names, colors, hubRadius) {
+  drawWheelNoCache(context, wheelRadius, names, colors, hubRadius, doNotChangeBackgroundColor) {
     context.save();
     context.translate(context.canvas.width / 2, context.canvas.height / 2);
     var radiansPerSegment = 2 * Math.PI / names.length;
@@ -110,7 +110,7 @@ export default class WheelPainter {
       const displayText = Util.extractDisplayText(entry, true);
       const imageData = Util.extractImage(entry);
       const image = self.getWheelImage(imageData);
-      return new PieSlice(radiansPerSegment, wheelRadius, hubRadius, color, displayText, image);
+      return new PieSlice(radiansPerSegment, wheelRadius, hubRadius, color, displayText, image, doNotChangeBackgroundColor);
     });
     if (slices.length > 0) {
       context.font = this.getSmallestFont(context, slices, wheelRadius, hubRadius);

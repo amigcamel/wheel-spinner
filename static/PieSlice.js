@@ -17,7 +17,7 @@ import * as Util from './Util.js';
 import * as ImageUtil from './ImageUtil.js';
 
 
-export default function PieSlice(radians, wheelRadius, hubRadius, color, displayText, image) {
+export default function PieSlice(radians, wheelRadius, hubRadius, color, displayText, image, doNotChangeBackgroundColor) {
   this.radians = radians;
   this.wheelRadius = wheelRadius;
   this.hubRadius = hubRadius;
@@ -30,7 +30,12 @@ export default function PieSlice(radians, wheelRadius, hubRadius, color, display
     let bgColor = this.color;
     drawBackColor(context, this.wheelRadius, this.radians, bgColor);
     if (this.image) {
-      let imgBgColor = ImageUtil.getTopLeftColor(this.image);
+      let imgBgColor;
+      if (doNotChangeBackgroundColor) {
+        imgBgColor = bgColor;
+      } else {
+        imgBgColor = ImageUtil.getTopLeftColor(this.image);
+      }
       drawBackColor(context, this.wheelRadius, this.radians, imgBgColor);
       if (!ImageUtil.isTransparent(imgBgColor)) {
         bgColor = imgBgColor;

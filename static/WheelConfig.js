@@ -44,6 +44,7 @@ export default function WheelConfig(winnerMessage) {
   this.winnerMessage = winnerMessage || 'We have a winner!';
   this.playClickWhenWinnerRemoved = false;
   this.hubSize = 'S';
+  this.doNotChangeBackgroundColor = true;
 
   this.loadJson = function(jsonString) {
     let obj = JSON.parse(jsonString);
