@@ -13,24 +13,26 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-<!-- <template>
+<template>
   <div class="card" style="margin-top:10px">
     <div class="card-content" style="padding:10px">
       <div class="content" style="font-size:0.8em">
         <div v-if="appInfoVisible">
           <b-button @click="toggleVisibility" type="is-light" pack="fas" icon-left="chevron-circle-down" size="is-small" style="float:right;margin-left:10px"></b-button>
-          {{ $t('appInfo.The entries you make') }}
+          <ol>
+            <li v-for="winner in winners" :key="winner.winnerText" v-html="winner"></li>
+          </ol>
           <hr style="margin:5px;">
-          <span style="color:#999">{{ $t('appInfo.Version') }} {{ version }}</span>
+          <span style="color:#999">{{ version }}</span>
         </div>
         <div v-else>
           <b-button @click="toggleVisibility" type="is-light" pack="fas" icon-left="chevron-circle-up" size="is-small" style="float:right;margin-top:-5px"></b-button>
-          <span style="color:#999">{{ $t('appInfo.Version') }} {{ version }}</span>
+          <span style="color:#999">{{ version }}</span>
         </div>
       </div>
     </div>
   </div>
-</template> -->
+</template>
 
 <script>
   export default {
@@ -39,7 +41,11 @@ limitations under the License.
         return this.$store.state.preferences.appInfoVisible
       },
       version() {
-        return this.$store.state.version
+        // return this.$store.state.version
+        return "Winners"
+      },
+      winners() {
+        return this.$store.state.wheelConfig.winners;
       }
     },
     methods: {

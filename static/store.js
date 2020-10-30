@@ -59,6 +59,7 @@ export default new Vuex.Store({
       newNames.splice(newNames.indexOf(name), 1);
       state.wheelConfig.names = newNames;
       state.appStatus.sheetLinked = false;
+      state.wheelConfig.winners.push(name);
     },
     removeNameAll(state, name) {
       state.wheelConfig.names = state.wheelConfig.names.filter(entry => {
