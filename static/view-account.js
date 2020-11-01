@@ -17,7 +17,7 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 Vue.use(Buefy);
 
-import 'buefy/dist/buefy.css';
+
 
 import './images/favicon.png';
 import './images/icon_192.png';

@@ -22,8 +22,6 @@ import app from './app.vue';
 import * as Locales from './Locales.js';
 import Path from './Path.js';
 
-import 'buefy/dist/buefy.css';
-
 import './images/favicon.png';
 import './images/icon_192.png';
 import './images/icon_512.png';
