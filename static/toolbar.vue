@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <template>
-  <b-navbar type='is-info' style="box-shadow: 0 3px 3px 0 lightgrey">
+  <b-navbar type='is-info'>
     <template slot="brand">
-      <b-navbar-item style="font-size:24px" href="/">
+      <b-navbar-item style="font-size:24px" href="#">
         {{toolbarBrand}}
       </b-navbar-item>
     </template>

@@ -41,9 +41,9 @@ limitations under the License.
           ></spinningwheel>
         </div>
         <div class="column is-3" v-show="!$store.state.appStatus.fullScreen">
-          <span style="font-family:Quicksand">
+          <!--<span style="font-family:Quicksand">
             {{ $t('app.Make your entries here') }}
-          </span>
+          </span>-->
           <br/>
           <textboxbuttons></textboxbuttons>
           <textbox></textbox>
@@ -259,7 +259,7 @@ limitations under the License.
         }
       },
       resetWheel() {
-        this.$buefy.dialog.alert({
+        this.$buefy.dialog.confirm({
           title: "Reset wheel",
           message: "All your changes will be reset, are you sure?",
           type: 'is-danger',

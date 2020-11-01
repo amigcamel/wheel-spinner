@@ -32,7 +32,7 @@ export default class WheelPainter {
   draw(context, angle, names, colors, centerImage, hubSize, doNotChangeBackgroundColor) {
     const wheelRadius = context.canvas.width * .44;
     const hubRadius = this.getHubRadius(wheelRadius, hubSize);
-    this.drawWheelShadow(context, wheelRadius);
+    // this.drawWheelShadow(context, wheelRadius);
     if (names.includes('')) this.drawHat(context, wheelRadius, hubRadius);
     this.drawWheel(context, wheelRadius, angle, names, colors, hubRadius, doNotChangeBackgroundColor);
     this.drawPointer(context, wheelRadius);
@@ -152,7 +152,7 @@ export default class WheelPainter {
   drawPointerNoCache(context, wheelRadius) {
     context.save();
     context.translate(context.canvas.width / 2, context.canvas.height / 2);
-    context.shadowColor = '#444';
+    // context.shadowColor = '#444';
     context.shadowOffsetY = 8;
     context.shadowBlur = 20;
     context.beginPath();

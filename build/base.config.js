@@ -145,6 +145,7 @@ module.exports = {
     new CopyWebpackPlugin({patterns: [
       { from: './static/manifest.json', to: '.' },
       { from: './static/images/favicon.ico', to: '.' },
+      { from: './static/images/bg.jpg', to: '.' },
       { from: './static/404.html', to: '.' },
     ]}),
     new GenerateSW({

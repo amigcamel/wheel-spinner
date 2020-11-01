@@ -22,11 +22,11 @@ export default function WheelConfig(winnerMessage) {
   this.title = '';
   this.names = Names;
   this.colorSettings = [
-    {color: '#3369E8', enabled: true},
-    {color: '#D50F25', enabled: true},
-    {color: '#EEB211', enabled: true},
-    {color: '#009925', enabled: true},
-    {color: '#000000', enabled: false},
+    {color: '#165B33', enabled: true},
+    {color: '#146B3A', enabled: true},
+    {color: '#F8B229', enabled: true},
+    {color: '#EA4630', enabled: true},
+    {color: '#BB2528', enabled: true},
     {color: '#000000', enabled: false},
   ];
   this.pictureType = 'uploaded';
