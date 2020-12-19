@@ -14,13 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import * as Util from './Util.js';
-import Names from './imgs.json';
 import * as Demo from './giftbox';
 
 
 export default function WheelConfig(winnerMessage) {
   this.title = '';
-  this.names = Names;
+  this.names = [];
+  this.sids = [];
   this.colorSettings = [
     {color: '#165B33', enabled: true},
     {color: '#146B3A', enabled: true},

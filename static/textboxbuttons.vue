@@ -15,6 +15,14 @@ limitations under the License.
 -->
 <template>
   <span>
+    <div class="field">
+      <b-checkbox
+        v-model="registrable"
+        :value="true">
+        Registrable
+        (people: {{this.$store.state.wheelConfig.sids.length}})
+      </b-checkbox>
+    </div>
     <b-button size="is-small" type="is-light" :disabled="buttonsDisabled" @click="shuffle">
       <i class="fas fa-random"></i>&nbsp;{{ $t('textboxbuttons.Shuffle') }}
     </b-button>
@@ -32,10 +40,31 @@ limitations under the License.
 <script>
   import * as Util from './Util.js';
   import * as ImageUtil from './ImageUtil.js';
+  import HSDIC from './data.js';
+
+  async function registerSids() {
+    const url = 'http://127.0.0.1:8000/targetsids';
+    const response = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {'Content-Type': 'application/json'},
+    });
+    return await response.json();
+  };
+
+  function genSidInfo(sid) {
+    return `<img src="https://lh3.googleusercontent.com/a-/${HSDIC[sid].uri}" style="font-size: 1rem; font-style: inherit; height: 25px"> ${sid.slice(1,4)} ${HSDIC[sid].name.split(' ')[0]}`;
+  }
 
   export default {
+    mounted: function() {
+      this.collectSids();
+    }, 
     data() {
-      return {uploadedImage: []}
+      return {
+        uploadedImage: [],
+        registrable: true,
+      }
     },
     watch: {
       uploadedImage: function(files) {
@@ -51,6 +80,11 @@ limitations under the License.
           reader.readAsDataURL(file);
         }
         this.uploadedImage = [];
+      },
+      registrable: function(val) {
+        if (val) {
+          this.collectSids();
+        }
       }
     },
     computed: {
@@ -66,6 +100,25 @@ limitations under the License.
       sort() {
         this.$store.commit('sortNames');
       },
+      collectSids() {
+        const intv = setInterval(() => {
+          if (!this.registrable) {
+            clearInterval(intv);
+            return;
+          }
+          const resp = registerSids();
+          resp
+            .then((resp) => {
+              const sids = resp.targetSids;
+              for (const sid of sids) {
+                if (this.$store.state.wheelConfig.sids.indexOf(sid) === -1) {
+                  this.$store.state.wheelConfig.sids.push(sid);
+                  this.$store.state.wheelConfig.names.push(genSidInfo(sid));
+                }
+              }
+            });
+        }, 1000);
+      }
     }
   }
 </script>
