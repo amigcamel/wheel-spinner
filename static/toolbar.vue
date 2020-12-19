@@ -92,7 +92,7 @@ limitations under the License.
   export default {
     data() {
       return {
-        toolbarBrand: "FFN Roulette",
+        toolbarBrand: "FFN Xmas Gift Exchange",
         browserIsIEOrOldEdge: Util.browserIsIEOrOldEdge(navigator.userAgent),
         locale: this.$i18n.locale, locales: Locales.getNamesForAll()
       };

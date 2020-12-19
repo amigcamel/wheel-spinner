@@ -26,7 +26,7 @@ limitations under the License.
 <script>
   export default {
     data() {
-      return {toolbarBrand: "FFN Roulette"};
+      return {toolbarBrand: "FFN Xmas Gift Exchange"};
     }
   }
 </script>
