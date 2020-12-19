@@ -18,7 +18,10 @@ limitations under the License.
 </style>
 
 <template>
-  <span>
+  <span v-if="token">
+    <after-reg></after-reg>
+  </span>
+  <span v-else>
     <loading-screen v-show="loading"></loading-screen>
     <toolbar
       v-on:show-snackbar-message="showSnackbarMessage"
@@ -115,6 +118,7 @@ limitations under the License.
   import sheetdialog from './sheetdialog.vue';
   import winnerdialog from './winnerdialog.vue';
   import winneranimation from './winneranimation.vue';
+  import afterReg from './afterReg.vue';
   import * as ConfettiLauncher from './ConfettiLauncher.js';
   import * as Util from './Util.js';
   import * as FullScreen from './FullScreen.js';
@@ -130,7 +134,7 @@ limitations under the License.
     components: {
       loadingScreen, toolbar, textboxbuttons, textbox, spinningwheel, appInfo,
       opendialog, winnerdialog, savedialog, optionsdialog, sharedialog,
-      twitterdialog, sheetdialog, winneranimation
+      twitterdialog, sheetdialog, winneranimation, afterReg
     },
     async mounted() {
       let result = '';
@@ -162,6 +166,9 @@ limitations under the License.
       return {waitAnimation: {}, loading: true};
     },
     computed: {
+      token() {
+        return this.$store.getters.token
+      },
       names() {
         return this.$store.state.wheelConfig.names
       },

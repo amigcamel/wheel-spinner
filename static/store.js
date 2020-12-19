@@ -30,7 +30,18 @@ export default new Vuex.Store({
     },
     version: '1'
   },
+  getters: {
+    token: (state, getters) => {
+      const url = new URL(window.location.href);
+      const params = new URLSearchParams(url.search);
+      const token = params.get('token');
+      return token;
+    }
+  },
   mutations: {
+    setSid(state, sid) {
+      state.sid = sid;
+    },
     setWheelConfig(state, newWheelConfig) {
       state.wheelConfig = newWheelConfig;
     },
