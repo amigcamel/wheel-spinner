@@ -45,6 +45,18 @@
     return respObj.sid;
   }
 
+  async function registerSid (sid) {
+    const url = `/api/targetsids`;
+    const payload = {sid: sid};
+    const response = await fetch(url, {
+      method: 'PUT',
+      mode: 'cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+    return response;
+  }
+
   export default {
     data() {
       return {sid: null};
@@ -53,6 +65,13 @@
       getSidFromToken(this.token)
         .then((sid) => {
           this.sid = sid;
+          registerSid(sid)
+            .then((resp) => {
+              console.log(resp);
+            })
+            .catch((err) => {
+              alert(err);
+            })
         })
         .catch(() => {
           this.sid = null;

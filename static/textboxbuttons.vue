@@ -43,7 +43,7 @@ limitations under the License.
   import HSDIC from './data.js';
 
   async function registerSids() {
-    const url = 'http://127.0.0.1:8000/targetsids';
+    const url = '/api/targetsids';
     const response = await fetch(url, {
       method: 'GET',
       mode: 'cors',
