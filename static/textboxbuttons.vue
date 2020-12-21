@@ -41,6 +41,7 @@ limitations under the License.
   import * as Util from './Util.js';
   import * as ImageUtil from './ImageUtil.js';
   import HSDIC from './data.js';
+  import { genSidInfo }from './sidUtils.js';
 
   async function registerSids() {
     const url = '/api/targetsids';
@@ -51,11 +52,6 @@ limitations under the License.
     });
     return await response.json();
   };
-
-  function genSidInfo(sid) {
-    const imgUrl = HSDIC[sid].uri ? `https://lh3.googleusercontent.com/a-/${HSDIC[sid].uri}` : 'https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png';
-    return `<img src="${imgUrl}" style="font-size: 1rem; font-style: inherit; height: 25px"> ${sid.slice(1,4)} ${HSDIC[sid].name.split(' ')[0]}`;
-  }
 
   export default {
     mounted: function() {

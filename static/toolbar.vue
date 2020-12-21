@@ -29,6 +29,9 @@ limitations under the License.
       <b-navbar-item v-show="newButtonVisible" href="#" @click="$emit('reset-wheel')">
         <i class="fas fa-redo fa-fw"></i>&nbsp;Reset
       </b-navbar-item>
+      <b-navbar-item v-show="newButtonVisible" href="#" @click="$emit('clear-wheel')">
+        <i class="fas fa-broom fa-fw"></i>&nbsp;Clear
+      </b-navbar-item>
       <!-- <b-navbar-item v-show="openButtonVisible" href="#" @click="$emit('open-open-dialog')">
         <i class="fa fa-folder-open fa-fw"></i>&nbsp;{{ $t('common.Open') }}
       </b-navbar-item>

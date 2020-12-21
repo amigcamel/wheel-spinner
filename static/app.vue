@@ -26,6 +26,7 @@ limitations under the License.
     <toolbar
       v-on:show-snackbar-message="showSnackbarMessage"
       v-on:reset-wheel="resetWheel()"
+      v-on:clear-wheel="clearWheel()"
       v-on:open-open-dialog="openOpenDialog()"
       v-on:open-save-dialog="openSaveDialog()"
       v-on:open-share-dialog="openShareDialog()"
@@ -136,6 +137,7 @@ limitations under the License.
   import * as Audio from './audio.js';
   import * as Locales from './Locales.js';
   import * as WheelConfigLoader from './WheelConfigLoader.js';
+  import { genSidInfo } from './sidUtils.js';
 
   export default {
     components: {
@@ -294,6 +296,24 @@ limitations under the License.
             const wheelConfig = new WheelConfig(this.$t('common.We have a winner!'));
             this.$store.commit('setWheelConfig', wheelConfig);
             this.showSnackbarMessage(this.$t('app.Loaded default entries and options'));
+          }
+        })
+      },
+      clearWheel() {
+        this.$buefy.dialog.confirm({
+          title: "Clear wheel",
+          message: "Are you sure?",
+          type: 'is-danger',
+          hasIcon: true,
+          ariaRole: 'alertdialog',
+          ariaModal: true,
+          onConfirm: () => {
+            this.$store.state.wheelConfig.names = [];
+            for (const sid of this.$store.state.wheelConfig.sids) {
+              this.$store.state.wheelConfig.names.push(genSidInfo(sid));
+            }
+            this.$store.state.wheelConfig.winners = [];
+            this.showSnackbarMessage("Cleared!");
           }
         })
       },
