@@ -116,8 +116,15 @@ limitations under the License.
               const sids = resp.targetSids;
               for (const sid of sids) {
                 if (this.$store.state.wheelConfig.sids.indexOf(sid) === -1) {
-                  this.$store.state.wheelConfig.sids.push(sid);
-                  this.$store.state.wheelConfig.names.push(genSidInfo(sid));
+                  this.$store.state.wheelConfig.sids.unshift(sid);
+                  this.$store.state.wheelConfig.names.unshift(genSidInfo(sid));
+                  this.$buefy.snackbar.open({
+                    duration: 10000,
+                    message: `${genSidInfo(sid, '45px', '2.3rem')}`,
+                    type: 'is-warning',
+                    position: 'is-top-left',
+                    queue: false,
+                  });
                 }
               }
             });
