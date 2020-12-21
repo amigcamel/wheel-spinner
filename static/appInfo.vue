@@ -42,7 +42,7 @@ limitations under the License.
       },
       version() {
         // return this.$store.state.version
-        return "Winners"
+        return "Drawed"
       },
       winners() {
         return this.$store.state.wheelConfig.winners;

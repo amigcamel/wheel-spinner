@@ -34,7 +34,7 @@ limitations under the License.
           {{ $t('common.Close') }}
         </b-button>
         <b-button size="is-medium" type="is-info" ref="removeButton" @click="removeWinner">
-          {{ $t('winnerdialog.Remove') }}
+          Continue
         </b-button>
         <b-button size="is-medium" v-show="multipleWinnerInstances" type="is-primary" @click="removeWinnerAll">
           {{ $t('winnerdialog.Remove all instances') }}
