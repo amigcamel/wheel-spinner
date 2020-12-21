@@ -5,6 +5,7 @@
   "private": false,
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
+    "@chenfengyuan/vue-qrcode": "^1.0.2",
     "buefy": "^0.8.20",
     "canvas-confetti": "^1.2.0",
     "circletype": "^2.3.0",

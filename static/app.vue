@@ -52,7 +52,14 @@ limitations under the License.
           <textbox></textbox>
           <app-info
             v-on:open-options-dialog="openOptionsDialog()"
+            v-show="!registrable"
           ></app-info>
+          <qrcode
+            id="qrcode"
+            value="https://ffntea.club/spin"
+            :options="{ width: 500, margin: 1, quality: 1}"
+            v-show="registrable"
+          ></qrcode>
         </div>
       </div>
     </section>
@@ -166,6 +173,9 @@ limitations under the License.
       return {waitAnimation: {}, loading: true};
     },
     computed: {
+      registrable() {
+        return this.$store.state.appStatus.registrable
+      },
       token() {
         return this.$store.getters.token
       },
@@ -202,6 +212,13 @@ limitations under the License.
         if (!newValue) {
           FullScreen.turnOffFullscreen();
         }
+      },
+      registrable(newValue, oldValue) {
+        const dom = document.getElementById('qrcode');
+        setTimeout(() => {
+          dom.style.width = '100%';
+          dom.style.height = null;
+        }, 100)
       },
     },
     methods: {

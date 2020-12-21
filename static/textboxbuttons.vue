@@ -64,7 +64,6 @@ limitations under the License.
     data() {
       return {
         uploadedImage: [],
-        registrable: true,
       }
     },
     watch: {
@@ -92,7 +91,15 @@ limitations under the License.
       buttonsDisabled() {
         const appStatus = this.$store.state.appStatus;
         return appStatus.sheetLinked || appStatus.wheelSpinning;
-      }
+      },
+      registrable: {
+        get() {
+          return this.$store.state.appStatus.registrable;
+        },
+        set () {
+          this.$store.commit('toggleRegistrable');
+        },
+      },
     },
     methods: {
       shuffle() {

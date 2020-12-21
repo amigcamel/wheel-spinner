@@ -26,7 +26,8 @@ export default new Vuex.Store({
     preferences: new Preferences(),
     appStatus: {
       fullScreen: false, online: true, wheelSpinning: false, sheetLinked: false,
-      userIsLoggedIn: false, userPhotoUrl: '', userDisplayName: '', userUid: ''
+      userIsLoggedIn: false, userPhotoUrl: '', userDisplayName: '', userUid: '',
+      registrable: false,
     },
     version: '1'
   },
@@ -39,6 +40,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    toggleRegistrable(state) {
+      state.appStatus.registrable = !state.appStatus.registrable;
+    },
     setSid(state, sid) {
       state.sid = sid;
     },

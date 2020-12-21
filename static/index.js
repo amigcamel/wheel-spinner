@@ -29,6 +29,8 @@ import './images/favicon.ico';
 import './images/404_cat.png';
 import './images/link.png';
 
+import VueQrcode from '@chenfengyuan/vue-qrcode';
+
 
 //
 // Global variables and initial drawing of the empty wheel.
@@ -54,6 +56,8 @@ Vue.use(VueI18n);
 const i18n = new VueI18n({
   locale: new Path(location).locale
 })
+
+Vue.component(VueQrcode.name, VueQrcode);
 
 loadLocale(i18n.locale).then(() => {
   new Vue({

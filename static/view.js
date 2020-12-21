@@ -30,6 +30,7 @@ import './images/favicon.ico';
 import './images/404_cat.png';
 import './images/link.png';
 
+import VueQrcode from '@chenfengyuan/vue-qrcode';
 
 window.onerror = function(message, source, lineno, colno, error) {
   if (error) message = error.stack;
@@ -47,6 +48,8 @@ Vue.use(VueI18n);
 const i18n = new VueI18n({
   locale: Locales.getLocale(window.location.hostname, window.location.pathname)
 })
+
+Vue.component(VueQrcode.name, VueQrcode);
 
 loadLocale(i18n.locale).then(() => {
   new Vue({
