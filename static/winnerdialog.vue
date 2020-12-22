@@ -19,14 +19,16 @@ limitations under the License.
       <header class="modal-card-head">
         <div class="modal-card-title">
           <h5 class="modal-title">
-            {{winnerMessage}}
+            {{winnerText}}
           </h5>
         </div>
       </header>
       <section class="modal-card-body">
-        <h1 class="title">
-          <img v-if="winnerImage" :src="winnerImage" style="height:200px;vertical-align:middle">
+        <h1 class="title has-text-centered">
+          <img v-if="winnerImage" :src="winnerImage" style="height:430px;vertical-align:middle">
+          <!--
           <span>{{winnerText}}</span>
+          -->
         </h1>
       </section>
       <footer class="modal-card-foot" style="justify-content:flex-end">
