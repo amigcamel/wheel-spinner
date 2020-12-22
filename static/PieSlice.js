@@ -62,6 +62,13 @@ export default function PieSlice(radians, wheelRadius, hubRadius, color, display
     context.lineJoin = 'round';
     context.textBaseline = 'middle';
     context.textAlign = 'end';
+
+    if (image) {
+      context.font = "20px Arial";
+      displayText = displayText.split(' ')[2]
+      radius = 160
+    }
+
     let color = getTextColor(bgColor);
     if (image) {
       context.lineWidth = 4;
