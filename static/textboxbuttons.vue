@@ -120,10 +120,11 @@ limitations under the License.
                   this.$store.state.wheelConfig.names.unshift(genSidInfo(sid));
                   this.$buefy.snackbar.open({
                     duration: 10000,
-                    message: `${genSidInfo(sid, '45px', '2.3rem')}`,
+                    message: `${genSidInfo(sid, '30px', '1.6rem')}`,
                     type: 'is-warning',
                     position: 'is-top-left',
                     queue: false,
+                    actionText: 'joined',
                   });
                 }
               }
