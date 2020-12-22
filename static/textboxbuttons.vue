@@ -20,8 +20,10 @@ limitations under the License.
         v-model="registrable"
         :value="true">
         Registrable
-        (people: {{this.$store.state.wheelConfig.sids.length}})
       </b-checkbox>
+      <b-button size="is-small" @click="showMembers()">
+        people: {{this.$store.state.wheelConfig.names.length}}
+      </b-button>
     </div>
     <b-button size="is-small" type="is-light" :disabled="buttonsDisabled" @click="shuffle">
       <i class="fas fa-random"></i>&nbsp;{{ $t('textboxbuttons.Shuffle') }}
@@ -49,9 +51,23 @@ limitations under the License.
       method: 'GET',
       mode: 'cors',
       headers: {'Content-Type': 'application/json'},
-    });
-    return await response.json();
-  };
+      });
+      return await response.json();
+    };
+
+  const ModalForm = {
+    props: ['names'],
+    template: `
+    <div class="container">
+      <div v-for="(c, index) in names">
+        <div v-if="index == 0 || index % 8 == 0" class="columns is-gapless">
+          <div v-for="k in [...Array(8).keys()]" v-if="index+k<names.length" class="column" v-html="names[index+k].replace('span', 'p').replace('25px', '100px')"></div>
+        </div>
+      </div>
+    </div>
+    `
+  }
+
 
   export default {
     mounted: function() {
@@ -84,6 +100,9 @@ limitations under the License.
       }
     },
     computed: {
+      names() {
+        return this.$store.state.wheelConfig.names
+      },
       buttonsDisabled() {
         const appStatus = this.$store.state.appStatus;
         return appStatus.sheetLinked || appStatus.wheelSpinning;
@@ -98,6 +117,16 @@ limitations under the License.
       },
     },
     methods: {
+      showMembers(names) {
+	this.$buefy.modal.open({
+	    parent: this,
+            props: {
+              names: this.names,
+            },
+	    component: ModalForm,
+	    trapFocus: true,
+	})
+      },
       shuffle() {
         this.$store.commit('shuffleNames');
       },
