@@ -70,12 +70,10 @@ limitations under the License.
 
 
   export default {
-    mounted: function() {
-      this.collectSids();
-    }, 
     data() {
       return {
         uploadedImage: [],
+        ws: null,
       }
     },
     watch: {
@@ -96,6 +94,13 @@ limitations under the License.
       registrable: function(val) {
         if (val) {
           this.collectSids();
+          this.syncTargetSids();
+        } else {
+          if (this.ws != null) {
+            this.ws.close();
+            this.ws = null;
+            console.log('ws closed.')
+          }
         }
       }
     },
@@ -117,6 +122,22 @@ limitations under the License.
       },
     },
     methods: {
+      syncTargetSids() {
+        this.ws = new WebSocket('/ws/targetsids');     
+        this.ws.addEventListener('message', (event) => {
+          console.log(event.data);
+          const sid = JSON.parse(event.data).sid;
+	  this.$buefy.snackbar.open({
+	    duration: 10000,
+	    message: `${genSidInfo(sid, '30px', '1.6rem')}`,
+	    type: 'is-warning',
+	    position: 'is-top-left',
+	    queue: false,
+	    actionText: 'joined',
+	  });
+          this.collectSids();
+        });
+      },
       showMembers(names) {
 	this.$buefy.modal.open({
 	    parent: this,
@@ -134,31 +155,18 @@ limitations under the License.
         this.$store.commit('sortNames');
       },
       collectSids() {
-        const intv = setInterval(() => {
-          if (!this.registrable) {
-            clearInterval(intv);
-            return;
-          }
-          const resp = registerSids();
-          resp
-            .then((resp) => {
-              const sids = resp.targetSids;
-              for (const sid of sids) {
-                if (this.$store.state.wheelConfig.sids.indexOf(sid) === -1) {
-                  this.$store.state.wheelConfig.sids.unshift(sid);
-                  this.$store.state.wheelConfig.names.unshift(genSidInfo(sid));
-                  this.$buefy.snackbar.open({
-                    duration: 10000,
-                    message: `${genSidInfo(sid, '30px', '1.6rem')}`,
-                    type: 'is-warning',
-                    position: 'is-top-left',
-                    queue: false,
-                    actionText: 'joined',
-                  });
-                }
+        const resp = registerSids();
+        resp
+          .then((resp) => {
+            const sids = resp.targetSids;
+            for (const sid of sids) {
+              if (this.$store.state.wheelConfig.sids.indexOf(sid) === -1) {
+                this.$store.state.wheelConfig.sids.unshift(sid);
+                this.$store.state.wheelConfig.names.unshift(genSidInfo(sid));
               }
-            });
-        }, 1000);
+            }
+          }
+        );
       }
     }
   }

@@ -67,6 +67,8 @@
           this.sid = sid;
           registerSid(sid)
             .then((resp) => {
+              let ws = new WebSocket('/ws/targetsids');
+              ws.onopen = () => ws.send(JSON.stringify({sid: sid}));
               console.log(resp);
             })
             .catch((err) => {
